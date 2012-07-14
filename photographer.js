@@ -9,7 +9,7 @@
   };
 
   // Photographer
-  // -----------
+  // ------------
 
   var Photographer = function(config) {
     config = extend(defaults, config);
