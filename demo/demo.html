@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <script type='text/javascript' src='../photographer.js'></script>
+    <style>
+      #photographer-container {
+        width: 640px;
+        height: 480px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='photographer-container'></div>
+    <script type='text/javascript'>
+      var container = document.getElementById('photographer-container');
+      var photographer = new Photographer({ container: container });
+      photographer.start();
+    </script>
+  </body>
+</html>
