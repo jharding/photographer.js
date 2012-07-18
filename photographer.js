@@ -2,14 +2,26 @@
 
 (function() {
 
+  // cross-browser normalization
+  // -------------
+
+  window.URL = window.URL || window.webkitURL || window.mozURL ||
+               window.msURL || window.oURL;
+
+  navigator.getUserMedia = navigator.getUserMedia ||
+                           navigator.webkitGetUserMedia ||
+                           navigator.mozGetUserMedia ||
+                           navigator.msGetUserMedia ||
+                           navigator.oGetUserMedia;
+
+  // Photographer
+  // ------------
+
   // default configurations
   var defaults = {
     debug: false,
     container: null
   };
-
-  // Photographer
-  // ------------
 
   var Photographer = function(config) {
     config = extend(defaults, config);
@@ -84,18 +96,6 @@
 
   // expose globally
   window.Photographer = Photographer;
-
-  // normalization
-  // -------------
-
-  window.URL = window.URL || window.webkitURL || window.mozURL ||
-               window.msURL || window.oURL;
-
-  navigator.getUserMedia = navigator.getUserMedia ||
-                           navigator.webkitGetUserMedia ||
-                           navigator.mozGetUserMedia ||
-                           navigator.msGetUserMedia ||
-                           navigator.oGetUserMedia;
 
   // helper functions
   // ----------------
