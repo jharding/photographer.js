@@ -20,18 +20,19 @@
   // default configurations
   var defaults = {
     debug: false,
+    flash: null,
     container: null
   };
 
   var Photographer = function(config) {
-    config = extend(defaults, config);
+    this._config = extend(defaults, config);
 
     this._stream = null;
 
     this._photos = [];
     this._latestPhoto = null;
 
-    this._container = config.container;
+    this._container = this._config.container;
 
     // dimensions of container element
     var width = this._container.clientWidth;
@@ -79,6 +80,9 @@
   };
 
   Photographer.prototype.takePhoto = function() {
+    // if flash function is present, call it
+    this._config.flash && this._config.flash(this._container);
+
     this._context.drawImage(this._video, 0, 0);
 
     this._latestPhoto = this._canvas.toDataURL('image/png');
