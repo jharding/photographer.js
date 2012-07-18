@@ -19,7 +19,6 @@
 
   // default configurations
   var defaults = {
-    debug: false,
     flash: null,
     container: null
   };
