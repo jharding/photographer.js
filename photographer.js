@@ -14,13 +14,14 @@
                            navigator.msGetUserMedia ||
                            navigator.oGetUserMedia;
 
-  // Photographer
+  // Photographer: say cheese!
   // ------------
 
   // default configurations
   var defaults = {
     flash: null,
     container: null,
+    imgFormat: 'png',
     imgWidth: null,
     imgHeight: null
   };
@@ -31,7 +32,6 @@
     this._stream = null;
 
     this._photos = [];
-    this._latestPhoto = null;
 
     this._container = this._config.container;
 
@@ -60,7 +60,10 @@
     this._context = this._canvas.getContext('2d');
   };
 
-  Photographer.prototype.start = function() {
+  // prototype alias
+  var proto = Photographer.prototype;
+
+  proto.start = function() {
     var that = this;
 
     // getUserMedia worked :)
@@ -73,37 +76,56 @@
 
     // getUserMedia failed :(
     var handleError = function(error) {
-      console.error(error);
+      throw new Error(error);
     };
 
     navigator.getUserMedia({ video: true }, pipeStreamToVideo, handleError);
+
+    return true;
   };
 
-  Photographer.prototype.stop = function() {
+  proto.stop = function() {
     this._stream && this._stream.stop();
-
     delete this._stream;
+
+    return true;
   };
 
-  Photographer.prototype.takePhoto = function() {
+  proto.takePhoto = function() {
     // if flash function is present, call it
     this._config.flash && this._config.flash(this._container);
 
     this._context.drawImage(this._video, 0, 0, this._config.imgWidth,
                             this._config.imgHeight);
 
-    this._latestPhoto = this._canvas.toDataURL('image/png');
-    this._photos.push(this._latestPhoto);
+    var src = this._canvas.toDataURL('image/' + this._config.imgFormat);
+    var format = src.match(/^data:image\/(\w+);/)[1];
+
+    var photo = {
+      src: src,
+      format: format,
+      width: this._config.imgWidth,
+      height: this._config.imgHeight
+    };
+
+    // push a copy of the latest photo into the photos array
+    this._photos.push(extend(photo));
+
+    return photo;
   };
 
-  Photographer.prototype.getPhotos = function() {
+  proto.getPhotos = function() {
     // return a copy of the photos array
     return this._photos.slice(0);
   };
 
-  Photographer.prototype.getLatestPhoto = function() {
-    return this._latestPhoto;
-  };
+  // if the browser doesn't support getUserMedia, override
+  // some methods to return false immediately
+  if (!navigator.getUserMedia) {
+    proto.start = proto.stop = proto.takePhoto = function() {
+      return false;
+    };
+  }
 
   // expose globally
   window.Photographer = Photographer;
@@ -111,6 +133,7 @@
   // helper functions
   // ----------------
 
+  // shallow copies
   var extend = function(target, obj) {
     var extendedObj = {};
 
