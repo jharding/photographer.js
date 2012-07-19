@@ -1,4 +1,6 @@
-/*globals */
+//  Photographer.js 0.0.1
+//  (c) 2012 Jake Harding
+//  Photographer.js is freely distributable under the MIT license.
 
 (function() {
 
