@@ -58,6 +58,14 @@
     this._canvas.height = this._config.imgHeight;
 
     this._context = this._canvas.getContext('2d');
+
+    // if the browser doesn't support getUserMedia, override
+    // some methods to return false immediately
+    if (!navigator.getUserMedia) {
+      this.start = this.stop = this.takePhoto = function() {
+        return false;
+      };
+    }
   };
 
   // prototype alias
