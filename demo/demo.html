@@ -9,12 +9,19 @@
     </style>
   </head>
   <body>
-    <button onclick='photographer.takePhoto();'>Take Photo</button>
+    <button onclick='sayCheese();'>Take Photo</button>
     <div id='photographer-container'></div>
     <script type='text/javascript'>
       var container = document.getElementById('photographer-container');
       var photographer = new Photographer({ container: container });
       photographer.start();
+
+      var sayCheese = function() {
+        var img = new Image();
+        img.src = photographer.takePhoto().src;
+
+        document.getElementsByTagName('body')[0].appendChild(img);
+      };
     </script>
   </body>
 </html>
