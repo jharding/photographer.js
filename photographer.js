@@ -145,13 +145,14 @@
   var extend = function(target, obj) {
     var extendedObj = {};
 
-    for (var key in target) {
+    var key;
+    for (key in target) {
       if (target.hasOwnProperty(key)) {
         extendedObj[key] = target[key];
       }
     }
 
-    for (var key in obj) {
+    for (key in obj) {
       if (obj.hasOwnProperty(key)) {
         extendedObj[key] = obj[key];
       }
