@@ -20,7 +20,7 @@
   // default configurations
   var defaults = {
     flash: null,
-    container: null,
+    container: null, // required
     imgFormat: 'png',
     imgWidth: null,
     imgHeight: null
@@ -29,15 +29,18 @@
   var Photographer = function(config) {
     this._config = extend(defaults, config);
 
+    // missing required configuraiton
+    if (!this._config.container) {
+      throw new Error('Photographer.js requires a container element');
+    }
+
     this._stream = null;
 
     this._photos = [];
 
-    this._container = this._config.container;
-
     // dimensions of container element
-    var width = this._container.clientWidth;
-    var height = this._container.clientHeight;
+    var width = this._config.container.clientWidth;
+    var height = this._config.container.clientHeight;
 
     // if imgWidth and imgHeight weren't explicitly set,
     // inherit values from the dimensions of the container
@@ -50,7 +53,7 @@
     this._video.width = width;
     this._video.height = height;
     this._video.autoplay = true;
-    this._container.appendChild(this._video);
+    this._config.container.appendChild(this._video);
 
     // canvas element is used to capture images
     this._canvas = document.createElement('canvas');
@@ -101,7 +104,7 @@
 
   proto.takePhoto = function() {
     // if flash function is present, call it
-    this._config.flash && this._config.flash(this._container);
+    this._config.flash && this._config.flash(this._config.container);
 
     this._context.drawImage(this._video, 0, 0, this._config.imgWidth,
                             this._config.imgHeight);
@@ -126,14 +129,6 @@
     // return a copy of the photos array
     return this._photos.slice(0);
   };
-
-  // if the browser doesn't support getUserMedia, override
-  // some methods to return false immediately
-  if (!navigator.getUserMedia) {
-    proto.start = proto.stop = proto.takePhoto = function() {
-      return false;
-    };
-  }
 
   // expose globally
   window.Photographer = Photographer;
