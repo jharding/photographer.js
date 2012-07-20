@@ -147,6 +147,6 @@ Photographer.js is pretty much useless in browsers that don't support the WebRTC
 License
 =======
 
-Copyright (c) 2012 Jake Harding
-Licensed under the MIT license.
-[https://raw.github.com/jharding/photographer.js/master/LICENSE-MIT](https://raw.github.com/jharding/photographer.js/master/LICENSE-MIT)
+Copyright (c) 2012 Jake Harding  
+Licensed under the MIT license.  
+<https://raw.github.com/jharding/photographer.js/master/LICENSE-MIT>
