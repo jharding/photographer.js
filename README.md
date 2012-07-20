@@ -29,7 +29,7 @@ The constructor function. It takes one argument, an object containing configurat
 
 * `imgHeight`(number, optional, height of `container` by default) - The preferred height of the capture images.
 
-### photographer#start()
+### Photographer#start()
 
 ```javascript
   photographer.start();
@@ -37,7 +37,7 @@ The constructor function. It takes one argument, an object containing configurat
 
 If the browser supports `navigator.getUserMedia`, this method will return `true` and start piping the video stream from the user's camera device to the live preview video. If the browser doesn't support `navigator.getUserMedia`, `false` will be returned. This method will also throw an error if `navigator.getUserMedia` results in an error.
 
-### photographer#stop()
+### Photographer#stop()
 
 ```javascript
   photographer.stop();
@@ -45,7 +45,7 @@ If the browser supports `navigator.getUserMedia`, this method will return `true`
 
 If the browser supports `navigator.getUserMedia`, this method will stop the video stream from the user's camera device and return `true`. If the browser doesn't support `navigator.getUserMedia`, `false` will be returned.
 
-### photographer#takePhoto()
+### Photographer#takePhoto()
 
 ```javascript
   var photo = photographer.takePhoto();
@@ -65,7 +65,7 @@ The photo object `photographer.takePhoto` returns contains the following propert
 
 * `height`(number) - The height of the captured image.
 
-### photographer#getPhotos()
+### Photographer#getPhotos()
 
 ```javascript
   var photos = photographer.getPhotos();
