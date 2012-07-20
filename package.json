@@ -1,8 +1,8 @@
 {
   "private": true,
   "author": "Jake Harding <jacob.s.harding@gmail.com> (http://thejakeharding.com)",
-  "name": "photographer.js",
-  "version": "0.0.0",
+  "name": "Photographer.js",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/jharding/photographer.js.git"
