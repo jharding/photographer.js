@@ -4,20 +4,25 @@
 
 (function() {
 
-  // cross-browser normalization
-  // -------------
+  // cross-browser normalization references
+  // --------------------------------------
 
-  var URL = window.URL || window.webkitURL || window.mozURL ||
-               window.msURL || window.oURL;
+  var URL = null;
+  var getUserMedia = null;
 
-  var getUserMedia = navigator.getUserMedia ||
-                     navigator.webkitGetUserMedia ||
-                     navigator.mozGetUserMedia ||
-                     navigator.msGetUserMedia ||
-                     navigator.oGetUserMedia;
+  var normalizeGlobalReferences = function() {
+    URL = window.URL || window.webkitURL || window.mozURL ||
+          window.msURL || window.oURL;
+
+    getUserMedia = navigator.getUserMedia ||
+                   navigator.webkitGetUserMedia ||
+                   navigator.mozGetUserMedia ||
+                   navigator.msGetUserMedia ||
+                   navigator.oGetUserMedia;
+  };
 
   // Photographer: say cheese!
-  // ------------
+  // -------------------------
 
   // default configurations
   var defaults = {
@@ -62,6 +67,10 @@
     this._canvas.height = this._config.imgHeight;
 
     this._context = this._canvas.getContext('2d');
+
+    // would prefer to do this once in IIFE, but normalizing the references
+    // whenever a Photographer instance is created makes for easier testing
+    normalizeGlobalReferences();
 
     // if the browser doesn't support getUserMedia, override
     // some methods to return false immediately
