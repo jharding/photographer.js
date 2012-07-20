@@ -54,7 +54,6 @@
     this._video = document.createElement('video');
     this._video.width = width;
     this._video.height = height;
-    this._video.autoplay = true;
     this._config.container.appendChild(this._video);
 
     // canvas element is used to capture images
@@ -83,8 +82,15 @@
     var pipeStreamToVideo = function(stream) {
       that._stream = stream;
 
-      window.URL ? that._video.src = window.URL.createObjectURL(stream) :
-                   that._video.src = stream;
+      try {
+        // browsers that follow W3C spec (Chrome)
+        that._video.src = window.URL.createObjectURL(stream);
+      } catch(e) {
+        // browsers that do not follow W3C spec (Firefox, Opera)
+        that._video.src = stream;
+      }
+
+      that._video.play();
     };
 
     // getUserMedia failed :(
