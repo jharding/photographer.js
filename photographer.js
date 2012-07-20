@@ -7,14 +7,14 @@
   // cross-browser normalization
   // -------------
 
-  window.URL = window.URL || window.webkitURL || window.mozURL ||
+  var URL = window.URL || window.webkitURL || window.mozURL ||
                window.msURL || window.oURL;
 
-  navigator.getUserMedia = navigator.getUserMedia ||
-                           navigator.webkitGetUserMedia ||
-                           navigator.mozGetUserMedia ||
-                           navigator.msGetUserMedia ||
-                           navigator.oGetUserMedia;
+  var getUserMedia = navigator.getUserMedia ||
+                     navigator.webkitGetUserMedia ||
+                     navigator.mozGetUserMedia ||
+                     navigator.msGetUserMedia ||
+                     navigator.oGetUserMedia;
 
   // Photographer: say cheese!
   // ------------
@@ -65,7 +65,7 @@
 
     // if the browser doesn't support getUserMedia, override
     // some methods to return false immediately
-    if (!navigator.getUserMedia) {
+    if (!getUserMedia) {
       this.start = this.stop = this.takePhoto = function() {
         return false;
       };
@@ -84,7 +84,7 @@
 
       try {
         // browsers that follow W3C spec (Chrome)
-        that._video.src = window.URL.createObjectURL(stream);
+        that._video.src = URL.createObjectURL(stream);
       } catch(e) {
         // browsers that do not follow W3C spec (Firefox, Opera)
         that._video.src = stream;
@@ -98,7 +98,8 @@
       throw new Error(error);
     };
 
-    navigator.getUserMedia({ video: true }, pipeStreamToVideo, handleError);
+    getUserMedia.call(navigator, { video: true }, pipeStreamToVideo,
+                      handleError);
 
     return true;
   };
