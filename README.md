@@ -130,17 +130,6 @@ Example Usage
 </html>
 ```
 
-Side Effects
-============
-
-Loading Photographer.js will result in 3 potential side-effects:
-
-1. `Photographer` will be added to the global namespace.
-
-2. If `window.URL` is browser prefixed, it'll be normalized. 
-
-3. If `navigator.getUserMedia` is browser prefixed, it'll also be normalized.
-
 Bugs and Limitations
 ====================
 
