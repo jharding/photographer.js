@@ -6,63 +6,6 @@ HTML5 Apps Shouldn't Require Flash
 
 For a long time (too long), Flash was required if a web app wanted to capture images through a user's webcam. Things are changing though and bleeding edge browsers now allow access to media devices (video and audio input) through the WebRTC API. Photographer.js is a library built to help abstract away the WebRTC API and make capturing photos in a web app dead simple. 
 
-Example Usage
-=============
-
-```html
-<html>
-  <head>
-    <!-- load Photographer.js -->
-    <script src='photographer.js'></script>
-  </head>
-  <body>
-    <!-- this element will contain the video element Photographer.js
-         pipes the webcam video stream to -->
-    <div id='photobooth' style='width: 640px; height: 480px;'></div>
-
-    <!-- when this button is clicked, a photo will be captured -->
-    <button id='camera-click'>Take Photo</button>
-
-    <script>
-      // DOM references
-      var body = document.getElementsByTagName('body')[0];
-      var photobooth = document.getElementById('photobooth');
-      var cameraClickBtn = document.getElementById('camera-click');
-
-      // this function will get called right before Photographer.js
-      // captures a photo. you can use it to provide a custom visual
-      // cue to the user that their photo is about to be taken
-      var flash = function(container) {
-        alert('Say cheese!');
-      };
-
-      // create a Photographer instance  
-      var photographer = new Photographer({
-        flash: flash,
-        container: photobooth
-      });
-
-      photographer.start();
-
-      // when the user clicks on the 'Take Photo' button, capture their
-      // image and append that image to the body
-      cameraClickBtn.onclick = function() {
-        var photo = photographer.takePhoto();
-
-        // create the img element to be appended
-        var img = new Image();
-        img.src = photo.src;
-        img.width = photo.width;
-        img.height = photo.height;
-
-        // add the image to the body
-        body.appendChild(img);
-      };
-    </script>
-  </body>
-</html>
-```
-
 API
 ===
 
@@ -129,6 +72,63 @@ The photo object `photographer.takePhoto` returns contains the following propert
 ```
 
 Each `Photographer` instance stores an array of all of the photos it has taken. `photographer.getPhotos()` will return a copy of that array.
+
+Example Usage
+=============
+
+```html
+<html>
+  <head>
+    <!-- load Photographer.js -->
+    <script src='photographer.js'></script>
+  </head>
+  <body>
+    <!-- this element will contain the video element Photographer.js
+         pipes the webcam video stream to -->
+    <div id='photobooth' style='width: 640px; height: 480px;'></div>
+
+    <!-- when this button is clicked, a photo will be captured -->
+    <button id='camera-click'>Take Photo</button>
+
+    <script>
+      // DOM references
+      var body = document.getElementsByTagName('body')[0];
+      var photobooth = document.getElementById('photobooth');
+      var cameraClickBtn = document.getElementById('camera-click');
+
+      // this function will get called right before Photographer.js
+      // captures a photo. you can use it to provide a custom visual
+      // cue to the user that their photo is about to be taken
+      var flash = function(container) {
+        alert('Say cheese!');
+      };
+
+      // create a Photographer instance  
+      var photographer = new Photographer({
+        flash: flash,
+        container: photobooth
+      });
+
+      photographer.start();
+
+      // when the user clicks on the 'Take Photo' button, capture their
+      // image and append that image to the body
+      cameraClickBtn.onclick = function() {
+        var photo = photographer.takePhoto();
+
+        // create the img element to be appended
+        var img = new Image();
+        img.src = photo.src;
+        img.width = photo.width;
+        img.height = photo.height;
+
+        // add the image to the body
+        body.appendChild(img);
+      };
+    </script>
+  </body>
+</html>
+```
 
 Side Effects
 ============
