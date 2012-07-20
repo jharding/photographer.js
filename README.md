@@ -42,9 +42,11 @@ Example Usage
         container: photobooth
       });
 
+      photographer.start();
+
       // when the user clicks on the 'Take Photo' button, capture their
       // image and append that image to the body
-      takePhotoBtn.onclick = function() {
+      cameraClickBtn.onclick = function() {
         var photo = photographer.takePhoto();
 
         // create the img element to be appended
