@@ -10,7 +10,7 @@ Downloads
 =========
 
 * [Development Version (0.0.2)](https://raw.github.com/jharding/photographer.js/master/photographer.js)
-* [Produciton Version (0.0.2)](https://raw.github.com/jharding/photographer.js/master/photographer.min.js)
+* [Production Version (0.0.2)](https://raw.github.com/jharding/photographer.js/master/photographer.min.js)
 
 API
 ===
@@ -136,10 +136,14 @@ Example Usage
 </html>
 ```
 
-Bugs and Limitations
-====================
+Supported Browsers
+==================
 
-Photographer.js is pretty much useless in browsers that don't support the WebRTC API. Unfortunately most browsers fall into that category right now, but hopefully more and more browsers will pick up support as time goes on.
+* Opera 12
+* Chrome Canary
+* Firefox Nightly (images can't be captured however due to this [bug](https://bugzilla.mozilla.org/show_bug.cgi?id=771833)).
+
+Support for the WebRTC API in Chrome and Firefox should be right around the corner.
 
 License
 =======
