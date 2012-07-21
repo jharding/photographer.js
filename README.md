@@ -6,6 +6,12 @@ HTML5 Apps Shouldn't Require Flash
 
 For a long time (too long), Flash was required if a web app wanted to capture images through a user's webcam. Things are changing though and bleeding edge browsers now allow access to media devices (video and audio input) through the WebRTC API. Photographer.js is a library built to help abstract away the WebRTC API and make capturing photos in a web app dead simple. 
 
+Downloads
+=========
+
+* [Development Version (0.0.2)](https://raw.github.com/jharding/photographer.js/master/photographer.js)
+* [Produciton Version (0.0.2)](https://raw.github.com/jharding/photographer.js/master/photographer.min.js)
+
 API
 ===
 
