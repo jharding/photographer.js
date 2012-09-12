@@ -139,11 +139,11 @@ Example Usage
 Supported Browsers
 ==================
 
-* Opera 12
-* Chrome Canary
-* Firefox Nightly (images can't be captured however due to this [bug](https://bugzilla.mozilla.org/show_bug.cgi?id=771833)).
+* Opera 12+
+* Chrome
+* Firefox Nightly
 
-Support for the WebRTC API in Chrome and Firefox should be right around the corner.
+If all goes to plan, [full WebRTC support should be available in Firefox 18](https://hacks.mozilla.org/2012/09/full-webrtc-support-is-soon-coming-to-a-web-browser-near-you/).
 
 License
 =======
