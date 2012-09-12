@@ -1,8 +1,9 @@
 describe('Photographer.js', function() {
 
-  // reference to original objects
-  var _URL = window.URL;
-  var _getUserMedia = navigator.getUserMedia;
+  // override getUserMedia for stubbing
+  ['g', 'webkitG', 'mozG', 'msG', 'oG'].forEach(function(prefix) {
+    navigator[prefix + 'etUserMedia'] = null;
+  });
 
   // test data
   var imgDataURL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8';
