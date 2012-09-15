@@ -1,19 +1,18 @@
 Photographer.js
----------------
+===============
 
-HTML5 Apps Shouldn't Require Flash
-==================================
+__HTML5 Apps Shouldn't Require Flash__
 
 For a long time (too long), Flash was required if a web app wanted to capture images through a user's webcam. Things are changing though and bleeding edge browsers now allow access to media devices (video and audio input) through the WebRTC API. Photographer.js is a library built to help abstract away the WebRTC API and make capturing photos in a web app dead simple. 
 
 Downloads
-=========
+---------
 
 * [Development Version (0.0.2)](https://raw.github.com/jharding/photographer.js/master/photographer.js)
 * [Production Version (0.0.2)](https://raw.github.com/jharding/photographer.js/master/photographer.min.js)
 
 API
-===
+---
 
 ### Photographer(config)
 
@@ -80,7 +79,7 @@ The photo object `photographer.takePhoto` returns contains the following propert
 Each `Photographer` instance stores an array of all of the photos it has taken. `photographer.getPhotos()` will return a copy of that array.
 
 Example Usage
-=============
+-------------
 
 ```html
 <html>
@@ -137,7 +136,7 @@ Example Usage
 ```
 
 Supported Browsers
-==================
+------------------
 
 * Opera 12+
 * Chrome
@@ -146,8 +145,7 @@ Supported Browsers
 If all goes to plan, [full WebRTC support should be available in Firefox 18](https://hacks.mozilla.org/2012/09/full-webrtc-support-is-soon-coming-to-a-web-browser-near-you/).
 
 License
-=======
+-------
 
 Copyright (c) 2012 Jake Harding  
-Licensed under the MIT license.  
-<https://raw.github.com/jharding/photographer.js/master/LICENSE-MIT>
+Licensed under the MIT license.
